@@ -7,7 +7,7 @@ function Main() {
     return (
         <div >
             <Navbar />
-            <div className="pt-">
+            <div className="">
                 <Outlet />
             </div>
             <Footer />
