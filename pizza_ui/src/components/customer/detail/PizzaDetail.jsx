@@ -1,6 +1,6 @@
-import PizzaCard from "../../ui/PizzaCard"
-
-const Popularpizza = () => {
+import Checkbox from '@mui/material/Checkbox';
+import PizzaList from './PizzaList';
+const PizzaDetail = () => {
     const cardPizza = [
         { name: 'Margherita', ingredient: ['Tomato', 'Mozzarella', 'Bell Peppers', 'Onions', 'Olives'], price: 150, image: 'Group 1.png', restaurant: 'Azmera Pizza', restaurant_image: 'avatar.png' },
         { name: 'Margherita', ingredient: ['Tomato', 'Mozzarella', 'Bell Peppers', 'Onions', 'Olives'], price: 150, image: 'Group 1.png', restaurant: 'Azmera Pizza', restaurant_image: 'avatar.png' },
@@ -9,16 +9,22 @@ const Popularpizza = () => {
         { name: 'Margherita', ingredient: ['Tomato', 'Mozzarella', 'Bell Peppers', 'Onions', 'Olives'], price: 150, image: 'Group 1.png', restaurant: 'Azmera Pizza', restaurant_image: 'avatar.png' },
         { name: 'Margherita', ingredient: ['Tomato', 'Mozzarella', 'Bell Peppers', 'Onions', 'Olives'], price: 150, image: 'Group 1.png', restaurant: 'Azmera Pizza', restaurant_image: 'avatar.png' },
     ];
+    const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+    const ingredients = cardPizza?.map((list) => list?.ingredient)
     return (
-        <div className='w-[85%] m-auto space-y-10 pb-2'>
-            <p className="text-[#7F7C78] text-[4rem] font-semibold">Popular Pizzas</p>
-            <div className="grid m-auto grid-cols-3 gap-y-7">
-                {cardPizza?.map((item, index) =>
-                    <PizzaCard key={index} item={item} />
-                )}
+        <div className="flex space-x-5 justify-between xl:w-[80%] w-[90%] m-auto">
+            <div className="flex space-x-4">
+                <img src={`/Group 6.png`} className='h-[400px]' alt="image2" />
+
+            </div>
+            <div className="space-y-3">
+                <img src={`/Group 8.png`} className='h-[190px]' alt="image2" />
+                <img src={`/Group 7.png`} className='h-[190px]' alt="image2" />
+            </div>
+            <div>
+                <PizzaList pizza={cardPizza?.[0]} />
             </div>
         </div>
     )
 }
-
-export default Popularpizza
+export default PizzaDetail

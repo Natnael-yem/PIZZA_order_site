@@ -1,4 +1,4 @@
-import PizzaCard from "../../ui/PizzaCard";
+import PizzaCard from "../../../ui/PizzaCard";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';

@@ -3,7 +3,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { useState } from 'react';
-import Cards from '../../ui/Cards';
+import Cards from '../../../ui/Cards';
 
 const Featured = () => {
     const [active, setActive] = useState('0');
