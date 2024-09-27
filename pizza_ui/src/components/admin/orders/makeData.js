@@ -14,7 +14,7 @@ export const data = [
         quantity: 'Wilkinson',
         topping: 'Feest - Reilly',
         created_At: 'Hertaland',
-        status: 'Qatar',
+        status: 'Delivered',
     },
     {
         phone: 2,
@@ -22,7 +22,7 @@ export const data = [
         quantity: 'Feil',
         topping: 'Deckow, Leuschke and Jaskolski',
         created_At: 'Millcreek',
-        status: 'Nepal',
+        status: 'Delivered',
     },
     {
         phone: 3,
@@ -30,7 +30,7 @@ export const data = [
         quantity: 'Baumbach',
         topping: 'Heidenreich, Grady and Durgan',
         created_At: 'Volkmanside',
-        status: 'Croatia',
+        status: 'Preparing',
     },
     {
         phone: 4,
@@ -38,7 +38,7 @@ export const data = [
         quantity: 'Brown',
         topping: 'Cormier - Skiles',
         created_At: 'Faychester',
-        status: 'Saint Pierre and Miquelon',
+        status: 'Preparing',
     },
     {
         phone: 5,
@@ -46,6 +46,7 @@ export const data = [
         quantity: 'Bins',
         topping: 'Wehner - Wilderman',
         created_At: 'New Valentin',
-        status: 'Senegal',
+        status: 'Ready',
     },
+    
 ];

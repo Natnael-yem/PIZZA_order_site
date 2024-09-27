@@ -9,6 +9,14 @@ const PizzaDetail = () => {
         { name: 'Margherita', ingredient: ['Tomato', 'Mozzarella', 'Bell Peppers', 'Onions', 'Olives'], price: 150, image: 'Group 1.png', restaurant: 'Azmera Pizza', restaurant_image: 'avatar.png' },
         { name: 'Margherita', ingredient: ['Tomato', 'Mozzarella', 'Bell Peppers', 'Onions', 'Olives'], price: 150, image: 'Group 1.png', restaurant: 'Azmera Pizza', restaurant_image: 'avatar.png' },
     ];
+    // const cardPizza = [
+    //     { name: 'Margherita', topping: ['Tomato', 'Mozzarella', 'Bell Peppers', 'Onions', 'Olives'], price: 150, image: 'Group 1.png', restaurant: 'Azmera Pizza', restaurant_image: 'avatar.png' },
+    //     { name: 'Margherita', ingredient: ['Tomato', 'Mozzarella', 'Bell Peppers', 'Onions', 'Olives'], price: 150, image: 'Group 1.png', restaurant: 'Azmera Pizza', restaurant_image: 'avatar.png' },
+    //     { name: 'Margherita', ingredient: ['Tomato', 'Mozzarella', 'Bell Peppers', 'Onions', 'Olives'], price: 150, image: 'Group 1.png', restaurant: 'Azmera Pizza', restaurant_image: 'avatar.png' },
+    //     { name: 'Margherita', ingredient: ['Tomato', 'Mozzarella', 'Bell Peppers', 'Onions', 'Olives'], price: 150, image: 'Group 1.png', restaurant: 'Azmera Pizza', restaurant_image: 'avatar.png' },
+    //     { name: 'Margherita', ingredient: ['Tomato', 'Mozzarella', 'Bell Peppers', 'Onions', 'Olives'], price: 150, image: 'Group 1.png', restaurant: 'Azmera Pizza', restaurant_image: 'avatar.png' },
+    //     { name: 'Margherita', ingredient: ['Tomato', 'Mozzarella', 'Bell Peppers', 'Onions', 'Olives'], price: 150, image: 'Group 1.png', restaurant: 'Azmera Pizza', restaurant_image: 'avatar.png' },
+    // ];
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const ingredients = cardPizza?.map((list) => list?.ingredient)
     return (

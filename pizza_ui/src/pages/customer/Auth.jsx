@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from "react-router-dom";
 import * as z from 'zod';
 import { useState } from "react";
+import { useUserNew } from "../../services/useUsers";
 
 const Schema = z.object({
     email: z.string().email("Invalid email").min(1, "Email is required"),
@@ -26,6 +27,7 @@ const SchemaLogin = z.object({
 })
 
 const Auth = () => {
+    const{mutate} = useUserNew();
     const navigate = useNavigate();
     const [login, setLogin] = useState(false);
     const {
@@ -46,7 +48,8 @@ const Auth = () => {
 
     const onSubmit = async (data) => {
         console.log(data)
-        navigate('/home');
+        // mutate(data)
+        // navigate('/home');
     };
 
     const handleLogin = () => {
