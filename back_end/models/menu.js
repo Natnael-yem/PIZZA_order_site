@@ -25,11 +25,6 @@ const Menu = sequelize.define('Menu', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  created_At: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
-    allowNull: false,
-  },
 });
 
 export default Menu;

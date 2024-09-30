@@ -3,10 +3,8 @@ import {
     useMaterialReactTable,
     createMRTColumnHelper,
 } from 'material-react-table';
-import { TiArrowSortedDown } from "react-icons/ti";
 import { GoCheck } from "react-icons/go";
-import { Box, Button, FormControl, IconButton, MenuItem, Radio, Select } from '@mui/material';
-import { FaEdit } from 'react-icons/fa'
+import { Box, FormControl, IconButton, MenuItem, Radio, Select } from '@mui/material';
 import { mkConfig, generateCsv, download } from 'export-to-csv';
 import { MdOutlineFileDownload } from "react-icons/md";
 import { GrPowerReset } from "react-icons/gr";
@@ -15,6 +13,7 @@ import { data } from './makeData';
 import { useState } from 'react';
 import { useMenu } from '../../../services/useMenu';
 import { useUsers } from '../../../services/useUsers';
+
 const columnHelper = createMRTColumnHelper();
 
 const AddOrder = () => {
@@ -25,9 +24,6 @@ const AddOrder = () => {
     const [showStatus, setShowStatus] = useState(false);
     const [statusMap, setStatusMap] = useState({});
     const allStatuses = ['Preparing', 'Ready', 'Delivered'];
-    const statuslist = data?.map((item) => item?.status);
-    const [indexNo, setIndexNo] = useState('');
-    const [number, setNumber] = useState();
     const handleToppingIconClick = (row) => {
         console.log('Topping icon clicked for', row);
     };
@@ -36,8 +32,6 @@ const AddOrder = () => {
         console.log('Status icon clicked for', row);
     };
     const handleShow = (index) => {
-        console.log(index?.id)
-        setIndexNo(index?.status)
         setShowStatus(!showStatus);
     }
     const handleChange = (row, newStatus) => {
@@ -86,7 +80,8 @@ const AddOrder = () => {
             Cell: ({ row }) => {
                 const currentStatus = statusMap[row.id] || row.original.status;
                 const remainingStatuses = allStatuses.filter(status => status !== currentStatus);
-                return (<Box className={`${currentStatus == 'Ready' ? 'bg-[#008000]' : currentStatus == 'Preparing' && 'bg-[#FFA500]'} w-[70%] rounded-md `}>
+                return (
+                <Box className={`${currentStatus == 'Ready' ? 'bg-[#008000]' : currentStatus == 'Preparing' && 'bg-[#FFA500]'} w-[70%] rounded-md `}>
                     {currentStatus == 'Delivered' ?
                         <div className='flex space-x-4'>
                             < GoCheck className='text-[#008000] text-[1.4rem] items-center' />
@@ -114,20 +109,6 @@ const AddOrder = () => {
                             </Select>
                         </FormControl>
                     }
-                    {/* <div onClick={() => handleShow(row)} className='w-[60%] py-[.5rem] rounded-md bg-[#FFA500] flex text-white justify-center items-center space-x-3 '>
-                        <button>Preparing</button>
-                        <TiArrowSortedDown className='text-[1.3rem]' />
-                    </div>
-                    {indexNo === row?.id &&
-                        <>
-                            {showStatus &&
-                                <div className='absolute z-50 h-[3rem]'>
-                                    <p>{row?.original?.status}</p>
-                                    <p>Preparing</p>
-                                    <p>Ready</p>
-                                </div>
-                            }
-                        </>} */}
                 </Box>
                 )
             },

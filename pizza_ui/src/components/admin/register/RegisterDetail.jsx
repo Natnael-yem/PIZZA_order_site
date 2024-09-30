@@ -4,13 +4,19 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from "react-router-dom";
 import * as z from 'zod';
 import { useState } from "react";
-
+import { useRestaurant, useRestaurantNew } from "../../../services/useRestaurant";
 const Schema = z.object({
-    name: z.string().min(1, 'Admin Name is required'),
+    admin_name: z.string().min(1, 'Admin Name is required'),
     email: z.string().email("Invalid email").min(1, "Email is required"),
     password: z.string().min(6, "Password must be at least 6 characters long"),
-    restaurant: z.string().min(1, 'restaurant is required'),
-    location: z.string().min(1, 'Location is required'),
+    restaurant_name: z.string().min(1, 'restaurant is required'),
+    phone: z
+        .string()
+        .min(10, "Phone number must be at least 10 digits")
+        .max(10)
+        .optional(),
+    location: z.string().min(3, 'Location is required'),
+    logo: z.any(),
     confirmpassword: z.string().min(6, "Field must be at least 6 string long"),
 }).refine((data) => data.password === data.confirmpassword, {
     message: "Passwords do not match",
@@ -18,34 +24,53 @@ const Schema = z.object({
 });
 
 const RegisterDetail = () => {
+    const { mutate, data } = useRestaurantNew();
+    const [file, setFile] = useState(null);
+    const { data: restaurantlist } = useRestaurant();
+    console.log(restaurantlist)
     const navigate = useNavigate();
     const [login, setLogin] = useState(false);
+    const [logins, setLogins] = useState({});
     const {
         register, control,
         handleSubmit, formState: { errors }
     } = useForm({
         resolver: zodResolver(Schema),
-        defaultValues: {
-            name: "",
-            email: "",
-            password: "",
-            restaurant: "",
-            location: "",
-            confirmpassword: "",
-        },
     });
 
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
+    const handleFileChange = (e) => {
+        if (e.target.files) {
+            console.log(e.target.files[0]);
+            setFile(e.target.files[0]);
+        }
+    };
+    console.log(file)
+
     const onSubmit = async (data) => {
-        console.log(data)
-        // navigate('/home');
+        const formData = new FormData();
+        if (file) {
+            formData.append('logo', file);
+        }
+        formData.append('admin_name', data.admin_name);
+        formData.append('email', data.email);
+        formData.append('password', data.password);
+        formData.append('phone', data.phone);
+        formData.append('location', data.location);
+        formData.append('restaurant_name', data.restaurant_name);
+        formData.forEach((value, key) => {
+            console.log(key, value);
+        });
+        mutate(formData);
+
     };
 
     const handleLogin = () => {
         setLogin(true);
 
     };
+
 
     const handleSignup = () => {
         setLogin(false);
@@ -71,11 +96,11 @@ const RegisterDetail = () => {
                         <TextField
                             label="Admin Name"
                             className="lg:w-[30rem]"
-                            {...register("name", {
+                            {...register("admin_name", {
                                 required: "Name is required"
                             })}
-                            error={!!errors.name}
-                            helperText={errors.name?.message}
+                            error={!!errors.admin_name}
+                            helperText={errors.admin_name?.message}
                         />
                     }
                     <TextField
@@ -110,13 +135,22 @@ const RegisterDetail = () => {
                             error={!!errors.confirmpassword}
                             helperText={errors.confirmpassword?.message} />
                         <TextField
-                            label="Restaurant Name"
+                            id="phone"
+                            label="Phone Number"
                             className="lg:w-[30rem]"
-                            {...register("restaurant", {
+                            {...register("phone", {
                                 required: "This field is required",
                             })}
-                            error={!!errors.restaurant}
-                            helperText={errors.restaurant?.message} />
+                            error={!!errors.phone}
+                            helperText={errors.phone?.message} />
+                        <TextField
+                            label="Restaurant Name"
+                            className="lg:w-[30rem]"
+                            {...register("restaurant_name", {
+                                required: "This field is required",
+                            })}
+                            error={!!errors.restaurant_name}
+                            helperText={errors.restaurant_name?.message} />
                         <TextField
                             label="Location"
                             className="lg:w-[30rem]"
@@ -125,6 +159,14 @@ const RegisterDetail = () => {
                             })}
                             error={!!errors.location}
                             helperText={errors.location?.message} />
+                        <TextField
+                            type="file"
+                            onChange={handleFileChange}
+                            error={!!errors.logo}
+                            helperText={errors.logo?.message}
+                        />
+                        
+                        
                     </>}
                     {!login ?
                         <div className="flex space-x-4 items-center">

@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import menuRoutes from './routes/menuRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import customerRoutes from './routes/customerRoutes.js'
+import restaurantRoutes from './routes/restaurantRoutes.js'
 import sequelize from './config/database.js';
 import cors from 'cors';
 
@@ -20,6 +21,8 @@ app.use('/api', menuRoutes);
 app.use('/api', orderRoutes);
 
 app.use('/api', customerRoutes);
+
+app.use('/api', restaurantRoutes)
 
 sequelize.sync({ alter: true })
   .then(() => console.log('Database synced'))

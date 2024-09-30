@@ -1,11 +1,3 @@
-// export type Person = {
-//    phone: number;
-//     name: string;
-//     quantity: string;
-//     topping: string;
-//     created_At: string;
-//     status: string;
-//   };
 
 export const data = [
     {
